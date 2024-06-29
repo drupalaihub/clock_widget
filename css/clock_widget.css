@@ -1,0 +1,13 @@
+.clock-widget {
+  font-size: 16px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.clock-widget .timezone {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

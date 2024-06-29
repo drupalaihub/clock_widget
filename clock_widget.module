@@ -1,0 +1,53 @@
+<?php
+
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function clock_widget_theme($existing, $type, $theme, $path) {
+  return [
+    'clock_widget' => [
+      'variables' => [
+        'display_est' => NULL,
+        'display_utc' => NULL,
+      ],
+      'template' => 'clock_widget',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function clock_widget_block_info() {
+  $blocks = [];
+  $blocks['clock_widget'] = [
+    'info' => t('Clock Widget'),
+  ];
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function clock_widget_block_view($delta = '') {
+  $block = [];
+  switch ($delta) {
+    case 'clock_widget':
+      $block['subject'] = t('Clock Widget');
+      $block['content'] = [
+        '#theme' => 'clock_widget',
+        '#attached' => [
+          'library' => [
+            'clock_widget/clock_widget',
+          ],
+        ],
+        '#display_est' => \Drupal::config('clock_widget.settings')->get('display_est'),
+        '#display_utc' => \Drupal::config('clock_widget.settings')->get('display_utc'),
+      ];
+      break;
+  }
+  return $block;
+}

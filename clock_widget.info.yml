@@ -1,0 +1,8 @@
+name: 'Clock Widget'
+type: module
+description: 'Provides a custom clock widget displaying time in different time zones.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:block
+  - drupal:config
